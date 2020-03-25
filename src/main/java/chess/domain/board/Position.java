@@ -18,6 +18,14 @@ public class Position {
 		return PositionCache.BOARD.get(position);
 	}
 
+	public int getRankNumber() {
+		return rank.getRank();
+	}
+
+	public int getFileColumnNumber() {
+		return file.getColumnNumber();
+	}
+
 	private static void validate(String input) {
 		if (Objects.isNull(PositionCache.BOARD.get(input))) {
 			throw new IllegalArgumentException("Position 값을 잘못입력하셨습니다!");
