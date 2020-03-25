@@ -2,6 +2,7 @@ package chess.domain.board;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Position {
 	private final File file;
@@ -12,8 +13,15 @@ public class Position {
 		this.rank = rank;
 	}
 
-	public static Position of(final File file, final Rank rank) {
-		return PositionCache.BOARD.get(PositionCache.createKey(file, rank));
+	public static Position of(String position) {
+		validate(position);
+		return PositionCache.BOARD.get(position);
+	}
+
+	private static void validate(String input) {
+		if (Objects.isNull(PositionCache.BOARD.get(input))) {
+			throw new IllegalArgumentException("Position 값을 잘못입력하셨습니다!");
+		}
 	}
 
 	private static class PositionCache {
@@ -39,7 +47,7 @@ public class Position {
 		}
 
 		private static String createKey(File file, Rank rank) {
-			return file.name() + rank.name();
+			return file.getFile() + rank.getRank();
 		}
 	}
 
