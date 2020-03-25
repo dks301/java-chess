@@ -30,6 +30,14 @@ public enum Direction {
 		this.y = y;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	public static List linearDirection() {
 		return Arrays.asList(NORTH, EAST, SOUTH, WEST);
 	}
